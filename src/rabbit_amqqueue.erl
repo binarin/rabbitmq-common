@@ -415,7 +415,7 @@ with(Name, F, E) ->
     with(Name, F, E, 2000).
 
 with(Name, _F, E, 0) ->
-    E(not_found_or_absent_dirty(Name));
+    E({absent, Q, timeout});
 with(Name, F, E, RetriesLeft) ->
     case lookup(Name) of
         {ok, Q = #amqqueue{state = crashed}} ->
